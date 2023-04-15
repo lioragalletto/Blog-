@@ -1,12 +1,11 @@
-
 import './App.css';
-import { useState } from 'react';
+import Cv from './pages/CV/Cv';
+import {Routes , Route} from "react-router-dom"
 
-import Footer from './components/Footer/Footer';
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import Section from "./components/Section/Section";
-
+import List from "./pages/List/List";
+import Metier from "./pages/Metier/Metier";
+import Toogle from "./pages/Toogle/Toogle";
+import Compteur from "./pages/Compteur/Compteur";
 
 
 
@@ -14,26 +13,23 @@ import Section from "./components/Section/Section";
 function App() {
 
 
-  const [name, setName] = useState("Liora Galletto");
-
-
-  const HandleName = (cb) => {
-    setName(cb)
-
-  }
+  
   
   return (
     <div className=''>
-    <header>
-   <Header name={name} />
-   <NavBar/>
-   </header>
-   <Section HandleName= {HandleName} />
+      <Routes>
+        <Route index element={<Cv/>}  />
+        <Route path ="/CV" element={<Cv/>}  />
+        <Route path ="/List" element={<List/>}/>
+        <Route path="/Metier" element={<Metier/>} />
+        <Route path="/Toogle" element={<Toogle/>} />
+        <Route path="/Compteur" element={<Compteur/>} />
 
-		<Footer name={name}/>
-   
+     </Routes>
 
-    </div>
+
+
+   </div>
       
    
   );

@@ -57,7 +57,6 @@ const Section = (HandleName) => {
 						<CardPointFort title = "Design" img = {design} alt = {"Design"}  figcaption = {"Lorem ipsum dolor, sit amet consectetur adipisicing elit."} />
 						<CardPointFort title = "Front-end development" img = {integration} alt = {"Design"}  figcaption = {"dolor, sit amet consectetur adipisicing elit."} />
 						<CardPointFort title = "Back-end development" img = {dev} alt = {"Design"}  figcaption = {"Lorem ipsum dolor, sit amet consectetur adipisicing elm dolor, sit amet consectetur adipisicing elit"} />
-
                         <CardPointFort title = "SEO" img = {seo} alt = {"Design"}  figcaption = {"dolor, sit amet consectetur adipisicing elit."} />
 
 						

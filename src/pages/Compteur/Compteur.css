@@ -1,0 +1,29 @@
+.container{
+    text-align: center;
+}
+
+.increment {
+border: 50px;
+background-color: blueviolet;
+font-size: 30px;
+
+}
+
+.decrement{
+    border: 50px;
+    background-color: pink;
+    font-size: 30px;
+}
+
+.reset{
+    border: 50px;
+    background-color: beige;
+    font-size: 30px;
+}
+
+
+button
+{
+    padding: 10px;
+    margin: 10px;
+}

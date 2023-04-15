@@ -8,7 +8,7 @@ const Header = (props) => {
 			<div className="conteneur">
 				<div className="normal-flex">
 					<div className="haut-gauche">
-						<h1>Nom Prénom {props.name}</h1>
+						<h1> {props.name}</h1>
 						<strong><span>C</span>ommunication</strong> /
 						<strong><span>M</span>arketing</strong> /
 						<strong><span>D</span>igital</strong>

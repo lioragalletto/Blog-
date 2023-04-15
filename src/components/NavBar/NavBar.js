@@ -1,19 +1,26 @@
 import React from "react"
-const NavBar = ()=> {
+import { Link } from "react-router-dom"
 
-   <nav>
+
+
+const NavBar = ()=> {
+	return (
+
+         <nav>
 				<div className="conteneur">
 					<div className="flex-menu">
-						<a href="index.html">Accueil</a>
-						<a href="cv.html">Mon c.v.</a>
-						<a href="folio.html">Folio</a>
-						<a href="contact.html">Contact</a>
+						 <Link to="/Cv">Cv</Link>
+					     <Link to="/List"> List</Link>
+						 <Link to="/Compteur"> Compteur </Link>
+						 <Link to="/Toogle"> Toogle</Link>
+						 <Link to="/Metier"> Metier </Link>
+						
 					</div>
 				</div>
 			</nav>
-    return 
-
-
+  
+	)
+  
 
 }
 export default  NavBar
