@@ -1,6 +1,6 @@
 import React ,{useState}from 'react'
 import { useEffect } from 'react'
-
+import NavBar from '../../components/NavBar/NavBar'
 import "./Compteur.css"
 
 
@@ -30,7 +30,7 @@ const Count = () => {
     
     <div>
       
-      
+      <NavBar/>
       <div className='container'>{count}</div>
       <button className='increment' onClick={()=> increment ()}> increment +</button>
       

@@ -3,7 +3,8 @@ import React , {useState} from 'react'
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import NavBar from '../../components/NavBar/NavBar';
-import Section from "../../components/Section/Section";
+import Main from "../../components/Main/Main";
+import SectionPresentation from '../../components/SectionPresentation/SectionPresentation';
 //import List from './components/List/list';
 //import Metier from './components/Metier/Metier';
 //import Count from './components/Compteur/Compteur';
@@ -25,9 +26,11 @@ const Cv = () => {
     
     <Header name={name} />
      <NavBar/>
+
+
+    <SectionPresentation/>
     
-    
-     <Section HandleName= {HandleName} />
+     <Main HandleName= {HandleName} />
     
    
          <Footer name={name}/>
