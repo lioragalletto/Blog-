@@ -1,44 +1,41 @@
-import React , {useState} from 'react'
 
+import React, { Component } from 'react';
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import NavBar from '../../components/NavBar/NavBar';
 import Main from "../../components/Main/Main";
 import SectionPresentation from '../../components/SectionPresentation/SectionPresentation';
-//import List from './components/List/list';
-//import Metier from './components/Metier/Metier';
-//import Count from './components/Compteur/Compteur';
-// import Toogle from './components/Toogle/Toogle';
 
-
-
-const Cv = () => {
-    const [name, setName] = useState("Liora Galletto");
-
-
-  const HandleName = (cb) => {
-    setName(cb)
-
+class Cv extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "Liora Galletto"
+    };
   }
-  return (
-    <div>
+
+  HandleName = (cb) => {
+    this.setState({ name: cb });
+  }
+
+  render() {
+    const { name } = this.state;
+    return (
       <div className=''>
-    
-    <Header name={name} />
-     <NavBar/>
+        <header>
+          <Header name={name} />
+          <NavBar />
+        </header>
 
+        <SectionPresentation />
 
-    <SectionPresentation/>
-    
-     <Main HandleName= {HandleName} />
-    
-   
-         <Footer name={name}/>
-    
- 
-     </div>
-    </div>
-  );
+        <Main HandleName={this.HandleName} />
+
+        <Footer name={name} />
+
+      </div>
+    );
+  }
 }
 
-export default Cv
+export default Cv;

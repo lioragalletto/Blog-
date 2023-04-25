@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react';
+import Layout from '../../components/Layout/Layout';
 
-const PageError = () => {
-  return (
-    <div>
-      Vous etes perdu 
-    </div>
-  )
+class PageError extends Component {
+  render() {
+    return (
+      <>
+        <Layout>
+          <div>
+            Vous êtes perdu
+          </div>
+        </Layout>
+      </>
+    );
+  }
 }
 
-export default PageError
+export default PageError;
