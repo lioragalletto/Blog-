@@ -1,35 +1,13 @@
-<<<<<<< HEAD:src/pages/CV/Main/Main.js
-import React from 'react'
-import profil from  "../../../assets/img/profil.png"
-import design from "../../../assets/img/design.png"
-import integration from "../../../assets/img/integration.png"
-import dev from "../../../assets/img/dev.png"
-import seo from "../../../assets/img/seo.png"
-import "./Main.css"
-  
-const CardPointFort = (props) => { 
-return  (
-	<>
-	       <figure>
-				<h4>{props.title}</h4>
-				<img src={profil} title="Categorie : graphisme" alt="Design"/>
-				<figcaption>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</figcaption>
-				</figure>  
-	</>
- )
 
-
-=======
-import React, { Component } from 'react';
-import profil from "../../assets/img/profil.png";
-import design from "../../assets/img/design.png";
-import integration from "../../assets/img/integration.png";
-import dev from "../../assets/img/dev.png";
-import seo from "../../assets/img/seo.png";
+import React from 'react';
+import profil from "../../../assets/img/profil.png";
+import design from "../../../assets/img/design.png";
+import integration from "../../../assets/img/integration.png";
+import dev from "../../../assets/img/dev.png";
+import seo from "../../../assets/img/seo.png";
 import "./Main.css";
 
-class CardPointFort extends Component {
-  render() {
+     const  CardPointFort = (props)=> { 
     return (
       <>
         <figure>
@@ -40,15 +18,15 @@ class CardPointFort extends Component {
       </>
     );
   }
->>>>>>> b5cb8b2ff9e6f714feaa1fccb34d625ac224a5aa:src/components/Main/Main.js
-}
 
-class Main extends Component {
-  HandleName = () => {
-    // Code pour gérer la logique onClick ici
-  }
 
-  render() {
+
+const Main = ({HandleName}) => {
+  console.log("HandleName depuis",HandleName)
+    // Codconsole.log("HandleName depuis",HandleName)e pour gérer la logique onClick ici
+  
+
+
     return (
       <main>
         <div className="conteneur flex-main">
@@ -108,6 +86,7 @@ class Main extends Component {
 			</div>
 		</main>
 
-)}}
+)
+}
 
 export default Main; 

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 import React , {useEffect,useState} from 'react'
 import axios from "axios"
@@ -86,71 +86,11 @@ useEffect(() => {
 
     </>
   )}
-=======
-import React, { Component} from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Layout from '../../components/Layout/Layout';
-
-class Blog extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get('https://sabik-5af023.appdrag.site/api/getallBlog', {
-        params: {
-          AD_PageNbr: '1',
-          AD_PageSize: '500'
-        }
-      })
-      .then((response) => {
-        console.log(response.data);
-        this.setState({ data: response.data.Table });
-      });
-  }
-
-  render() {
-    const { data } = this.state;
-    return (
-      <>
-        <Layout>
-          <div className='container'>
-            <h1 className='titre'> Mon Blog </h1>
-            {data?.map((row) => (
-              <Link
-                className='text-decoration-none text-dark'
-                to={`/article/${row.id}`}
-                key={row.id}
-              >
-                <div className='bg-secondary shadow-lg rouned m-3 p-3'>
-                  <h2>{row.tittle} </h2>
-                  <img src={row.image} className='img-fluid' alt='' />
-                  <p> {row.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Layout>
-      </>
-    );
-  }
-}
->>>>>>> b5cb8b2ff9e6f714feaa1fccb34d625ac224a5aa
-
-export default Blog;
-
-<<<<<<< HEAD
-export default Blog
+  export default Blog
 
 //Le tableau d'articles de blog est stocké dans l'état "data" grâce au hook useState. Il est récupéré depuis une API à l'aide d'une requête HTTP GET effectuée dans le hook useEffect.La méthode map est utilisée pour parcourir le tableau d'articles et générer un lien vers chaque article avec le titre, une courte description, l'image et l'auteur. 
 
 //La méthode slice est utilisée pour afficher uniquement les 100 premiers caractères de la description.Le composant Link de la bibliothèque "react-router-dom" est utilisé pour créer les liens vers les pages d'articles individuels. 
 //la propriété "to" de Link contient l'URL dynamique qui inclut l'identifiant unique de chaque article, stocké dans la propriété "id" de chaque objet article dans le tableau "data".Le code HTML pour chaque article est contenu dans une div avec la classe "bg-secondary shadow-lg rounded m-3 p-3".
 // Cette div contient le titre de l'article, une courte description, l'image de l'article et l'auteur de l'article.
-=======
->>>>>>> b5cb8b2ff9e6f714feaa1fccb34d625ac224a5aa
+
