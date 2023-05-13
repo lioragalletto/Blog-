@@ -1,7 +1,9 @@
 import React , {useEffect,useState} from 'react'
 import axios from "axios"
-import NavBar from '../../components/NavBar/NavBar';
-import Header from '../../components/Header/Header';
+import { Link } from 'react-router-dom';
+import {useTranslation} from "react-i18next"
+ 
+
 
 
 
@@ -9,6 +11,7 @@ import Header from '../../components/Header/Header';
 const  Portfolio = () => {
 
     const [data, setData] = useState();
+    const {t} = useTranslation()
 
 useEffect(() => {
     console.log("mon composant est monte")
@@ -24,30 +27,44 @@ useEffect(() => {
   },[]) // il manquait ca
   
   return (
+    <>
     
    
 
     
       <div className="container">
-      {<Header/>}
-      {<NavBar/>}
      
-      <h1 className='titre'> Mes projets </h1>
+     
+      <h1> {t("Portfolio.tittle")} </h1> 
       {
         data?.map((row)=> (
          
-          <div key ={row.id}  className="bg-secondary shadow-lg rouned m-3 p-3" >
-           <h2>{row.tittle} </h2>
-          <img src ={row.image} alt= ""  style={{width :"800px"}}/>
-           {row.lien && <a href ={row.lien} target="_blank"rel="noopemer noreferrer" style={{color:"black"}}> Clique ici pour le lien </a>}
+          <div key={row.id}  className="bg-secondary shadow-lg rouned m-3 p-3" >
+           <h2>{t("Portfolio.tittle1")} </h2>
+           
+          { row.lien ?
+            <a href={row.lien} target="_blank" rel="noopener noreferrer">
+                 <img src={row.image} className='img-fluid'  alt="" />
+            </a>
+            :
+            <img src ={row.image} className='img-fluid'  alt="" />
+          }
+          
+           {row.lien && <a href={row.lien} target="_blank"rel="noopemer noreferrer" style={{color:"black"}}> {t("Portfolio.click")}  </a>}
           <p> {row.description}</p> 
-
+        
 
           </div>
-          
-        )
-        ) }
+        
+        
+       ) ) }
+       <Link to="/">
+        <button className="btn btn-primary">retourner a la page initial</button>
+      </Link>
     </div>
+
+  
+   </>
   )}
 
 

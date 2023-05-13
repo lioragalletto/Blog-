@@ -1,10 +1,10 @@
-import React , {useState} from 'react'
+import React  from 'react'
 
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
 import NavBar from '../../components/NavBar/NavBar';
-import Main from "../../components/Main/Main";
-import SectionPresentation from '../../components/SectionPresentation/SectionPresentation';
+import Main from "./Main/Main";
+import SectionPresentation from './SectionPresentation/SectionPresentation';
 //import List from './components/List/list';
 //import Metier from './components/Metier/Metier';
 //import Count from './components/Compteur/Compteur';
@@ -13,7 +13,7 @@ import SectionPresentation from '../../components/SectionPresentation/SectionPre
 
 
 const Cv = () => {
-    const [name, setName] = useState("Liora Galletto");
+    const [name, setName] = React.useState("Liora Galletto");
 
 
   const HandleName = (cb) => {
@@ -21,12 +21,13 @@ const Cv = () => {
 
   }
   return (
-    <div>
+    
       <div className=''>
     
-    <Header name={name} />
-     <NavBar/>
-
+        <header>
+       <Header name={name} /> 
+        <NavBar/>  
+        </header>
 
     <SectionPresentation/>
     
@@ -37,7 +38,7 @@ const Cv = () => {
     
  
      </div>
-    </div>
+   
   );
 }
 

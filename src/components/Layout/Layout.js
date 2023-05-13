@@ -1,15 +1,28 @@
 import React from 'react'
-import Navbar from '../NavBar/Navbar'
-import Footer from '../Footer/Footer'
 
-const Layout = ({children, footer}) => {
+import Navbar from '../NavBar/NavBar'
+import Footer from '../../pages/CV/Footer/Footer'
+
+   
+
+
+
+const Layout =({children,footer}) => {
+
+ 
+
+  
+
   return (
     <>
-    <Navbar/>
-    {children}
-    {footer === true  &&
+     
+     <Navbar/>
+     {children} 
+     {footer === true  &&
      <Footer />
     }
+
+    
    
     </>
   )

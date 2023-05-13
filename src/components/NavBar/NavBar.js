@@ -14,7 +14,7 @@ const NavBar = ()=> {
          <nav>
 				<div className="conteneur">
 					<div className="flex-menu" onMouseOver={()=> changeOver()}>
-						 <Link to="/"> Portfolio </Link>
+						 <Link to="/"> Accueil </Link>
 						 <Link to="/Cv">Cv</Link>
 						 <Link to="/blog" >Blog</Link>
                          <Link to="/contact" >contact</Link>
@@ -30,6 +30,8 @@ const NavBar = ()=> {
 			  <Dropdown.Item as={Link} to="/Metier">  Metier </Dropdown.Item>
 			  <Dropdown.Item as={Link} to="/List"> List </Dropdown.Item>
 			  <Dropdown.Item as={Link} to="/Toogle"> Toogle </Dropdown.Item>
+			  <Dropdown.Item as={Link} to="/CountInterval"> CountInterval </Dropdown.Item>
+			  <Dropdown.Item as={Link} to="/MouseMove"> Mouse Move </Dropdown.Item>
               <Dropdown.Item >Something else</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
