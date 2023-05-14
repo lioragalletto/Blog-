@@ -7,16 +7,22 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from "react-router-dom"
 import DropI18N from "../Dropl18N/Dropl18N";
 import {useTranslation} from "react-i18next";
+import { useLocation, useParams } from 'react-router-dom'
+import SearchBar from "../../pages/SearchBar/SearchBar";
 
 
 function NavbarOffCanva() {
   const [isAuth, setIsAuth] = useState(false);
-  
 
   const { t } = useTranslation()
+  let location = useLocation()
+  console.log("location",location.pathname)
+  
+
 
 
   useEffect(() => {
+    console.log("location",location)
     if (localStorage.getItem("tokenBlog")) {
       console.log("localStorage plein je suis auth")
       setIsAuth(true)
@@ -45,9 +51,11 @@ function NavbarOffCanva() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <SearchBar/>
+
                   <Nav.Link as={Link} to="/">Portfolio</Nav.Link>
-                  <Nav.Link as={Link} to="/cv">Cv</Nav.Link>
-                  <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
+                  <Nav.Link as={Link} to="/Cv">Cv</Nav.Link>
+                  <Nav.Link as={Link} to="/blog"> <span className={` ${location.pathname === "/blog"? "fw-bold ": ""}`}> Blog</span></Nav.Link>
 
 
                    <Nav.Link as={Link} to="/login">{t("nav.login")}</Nav.Link>
@@ -56,10 +64,17 @@ function NavbarOffCanva() {
                   {
                     isAuth === true  &&
                     <>
+                      <Nav.Link as={Link} to="/addarticle">Add Article</Nav.Link>
+                      <>
+                    
+                    <Nav.Link  onClick={() => {
+                        localStorage.setItem("tokenBlog", "")
+                        window.location.reload()
+                      }} >logout</Nav.Link>
                   
-
-{/* UseState */}
-<NavDropdown title="UseState" id={`offcanvasNavbarDropdown-expand-${expand}`}  >
+                     
+   {/* UseState */}
+<NavDropdown  active title="UseState" id={`offcanvasNavbarDropdown-expand-${expand}`}  >
   <NavDropdown.Item as={Link} to='/PresUseState'>Presentation du hooks</NavDropdown.Item>
   <NavDropdown.Item as={Link} to="/usfObject">
     UseState Object
@@ -149,6 +164,12 @@ function NavbarOffCanva() {
   <NavDropdown.Item as={Link} to="/UpdatePortfolio">Update Portfolio</NavDropdown.Item>
 </NavDropdown>
 
+{/* Methodes */}
+<NavDropdown title="Methodes" id={`offcanvasNavbarDropdown-expand-${expand}`} >
+  <NavDropdown.Item as={Link} to="/FilterEX">FilterEX</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/FilterExSearch">FilterExSearch</NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/FindEX">FindEx</NavDropdown.Item>
+</NavDropdown>
 {/*Hook*/}
 
 
@@ -159,17 +180,23 @@ function NavbarOffCanva() {
   <NavDropdown.Item as={Link} to="/FormikExemple">FormikExemple</NavDropdown.Item>
 </NavDropdown>
 
-<Nav.Link as={Link} onClick={() => {
-                        localStorage.setItem("tokenBlog", "")
-                        window.location.reload()
-                      }} >logout</Nav.Link>
-
+<DropI18N/>
 
                     </>
+                    </>
                   } 
-                  <DropI18N/>
+                 
                 
                 </Nav>
+                 {/* <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+                </Form> */}
               
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -179,6 +206,6 @@ function NavbarOffCanva() {
 
     </>
   );
-}
+              }
 
 export default NavbarOffCanva;

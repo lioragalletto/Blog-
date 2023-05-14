@@ -8,7 +8,7 @@ import Main from '../CV/Main/Main'
 
 const Cv = () => {
     
-    const [name, setName] = React.useState("Elie Sultan");
+    const [name, setName] = React.useState("Liora Galletto");
 
     const HandleName = (cb) => {
        setName(cb)

@@ -13,8 +13,8 @@ const Article = () => {
      console.log (getParams.id)
    
     let location = useLocation();
-    console.log("location",location.pathname.slice(9));
-// .slice a partir du 9 
+    console.log("location",location.pathname);
+
 
 
   useEffect(() => {

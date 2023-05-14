@@ -10,12 +10,12 @@ import "./Main.css";
      const  CardPointFort = (props)=> { 
     return (
       <>
-        <figure>
-          <h4>{this.props.title}</h4>
-          <img src={this.props.img} title="Categorie : graphisme" alt="Design" />
-          <figcaption>{this.props.figcaption}</figcaption>
-        </figure>
-      </>
+      <figure>
+          <h4>{props.title}</h4>
+          <img src={profil} title="Catégorie : graphisme" alt="Design" />
+          <figcaption>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</figcaption>
+      </figure>
+  </>
     );
   }
 
@@ -43,10 +43,10 @@ const Main = ({HandleName}) => {
             </div>
 
             <div className="mise-en-avant">
-              <CardPointFort title="Design" img={design} alt="Design" figcaption="Lorem ipsum dolor, sit amet consectetur adipisicing elit." />
-              <CardPointFort title="Front-end development" img={integration} alt="Design" figcaption="dolor, sit amet consectetur adipisicing elit." />
-              <CardPointFort title="Back-end development" img={dev} alt="Design" figcaption="Lorem ipsum dolor, sit amet consectetur adipisicing elm dolor, sit amet consectetur adipisicing elit" />
-              <CardPointFort title="SEO" img={seo} alt="Design" figcaption="dolor, sit amet consectetur adipisicing elit." />
+              <CardPointFort title="Design" img={design} alt={"Design"}figcaption={"Lorem ipsum dolor, sit amet consectetur adipisicing elit."}/>
+              <CardPointFort title="Front-end development" img={integration} alt={"Design"} figcaption={"dolor, sit amet consectetur adipisicing elit." }/>
+              <CardPointFort title="Back-end development" img={dev} alt={"Design"} figcaption={"Lorem ipsum dolor, sit amet consectetur adipisicing elm dolor, sit amet consectetur adipisicing elit"} />
+              <CardPointFort title="SEO" img={seo} alt={"Design"} figcaption={"dolor, sit amet consectetur adipisicing elit." }/>
             </div>
           </section>
           <aside>
@@ -78,7 +78,7 @@ const Main = ({HandleName}) => {
               <label htmlFor="message">Message</label>
               <textarea placeholder="Ecrire votre message" name="message" id="message"></textarea>
 
-              <input type="submit" onClick={this.HandleName}/>
+              <input type="submit" onClick={()=>HandleName("test")} />
 
 
                </div>

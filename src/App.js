@@ -42,14 +42,20 @@ import HfBlur from "./pages/HookForm/HfBlur";
 import FormikExemple from "./pages/HookForm/FormikExemple"
 import AxiosPost from './pages/ApiSection/AxiosPost';
 import AxiosGet from './pages/ApiSection/AxiosGet';
+import FilterEx from "./pages/Methodes/FilterExSearch"
+import FindEx from "./pages/Methodes/FindEx"
+import FilterExSearch from "./pages/Methodes/FilterExSearch"
+import Layout from "./components/Layout/Layout";
 
-function App ()
-{
+
+
+function App () {
   
   return (
    
-      
- <Routes>
+     
+
+        <Routes>
   
  
    
@@ -71,8 +77,10 @@ function App ()
         <Route path="/PresUseEffect" element={<PresUseEffect />} />
         <Route path="/UefVide" element={<UefVide />} />
         <Route path="/UseEffectDependance" element={<UseEffectDependance />} />
-        <Route path="/UseEffectReturn" element={<UseEffectReturn />} />\
-
+        <Route path="/UseEffectReturn" element={<UseEffectReturn />} />
+        <Route path="/FilterEx" element={<FilterEx />} />
+        <Route path="/FilterExSearch" element={<FilterExSearch />} />
+        <Route path="/FindEx" element={<FindEx />} />
         {/* Section CSS */}
         <Route path="/StyleReact" element={<StyleReact />} />
         <Route path="/Test" element={<Test />} />
@@ -101,10 +109,11 @@ function App ()
         <Route path="/FormikExemple" element={<FormikExemple />} />
         <Route path="/HfBlur" element={<HfBlur/>} />
         <Route path="*" element={<PageError/>} />
-   
-  </Routes>
 
-
+      
+    </Routes>
+  
+ 
 
    
       

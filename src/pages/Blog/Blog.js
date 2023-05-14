@@ -2,11 +2,9 @@
 
 import React , {useEffect,useState} from 'react'
 import axios from "axios"
-/*import NavBar from '../../components/NavBar/NavBar';*/
-/*import Header from '../../components/Header/Header';*/ 
+import { useTranslation } from 'react-i18next';
 import {Link} from "react-router-dom"
-import NavbarOffCanva from '../../components/NavbarBoot/NavbarOffCanva'
-import i18n from '../../i18n/config'
+
 
 
 
@@ -17,7 +15,9 @@ const  Blog = () => {
     const [data, setData] = useState();
     const [activeFooter, setActiveFooter] = useState(false);
     //La variable data sera utilisée pour stocker les données des articles de blog, et activeFooter sera utilisée pour afficher ou masquer un pied de page dans la page du blog.
-    const [language, setLanguage] = useState();
+    const [language, setLanguage] = useState("en");
+    const {t, i18n } = useTranslation();
+
 
     
 useEffect(() => {
@@ -45,7 +45,8 @@ useEffect(() => {
     // Nettoyage : supprime l'écouteur d'événement lorsque le composant est démonté
     return () => {
       i18n.off('languageChanged', handleChangeLanguage);
-    };  }, [i18n]);
+    };
+    }, [i18n]);
 
   const HandleFooter = () => {
     setActiveFooter(!activeFooter)
@@ -55,10 +56,10 @@ useEffect(() => {
   return (
     
      <>
-     <NavbarOffCanva/>
+     
       <div className="container">
       
-      3
+      
      
       <h1 className='titre'> Mon Blog </h1>
       {
@@ -68,7 +69,7 @@ useEffect(() => {
           <div key ={row.id}  className="bg-secondary shadow-lg rouned m-3 p-3" >
            <h2>{ language === "fr" ?  row.tittle  : row.tittleEn} </h2>
           <img src ={row.image} className="img-fluid" alt= ""/>
-          <p>{language === "fr" ?   row.description.slice(0, 100) : row.descriptionEn?.slice(0, 100)}...</p>
+          <p>{language === "fr" ?  row.description.slice(0, 100) : row.descriptionEn?.slice(0, 100)}...</p>
 
           <p> {language === "fr" ? row.auteur : row.auteurEn } </p>
           </div>
