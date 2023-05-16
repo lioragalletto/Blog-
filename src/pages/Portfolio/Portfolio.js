@@ -15,6 +15,8 @@ const  Portfolio = () => {
 
 
     const [data, setData] = useState();
+    const[ dataSauv, SetDataSauv] =useState();
+   
     
     
     const {t} = useTranslation()
@@ -32,19 +34,23 @@ const  Portfolio = () => {
       console.log(response.data.table);
     
           setData(response.data.Table)
+          SetDataSauv(response.data.Table)
+          
         });
       },[]) // il manquait ca
 
 
     const handleFilter =  (cb) => {
-  
+      
     console.log("cb", cb)
     console.log("data",data)
-    const FilterProjects = data.filter(row => row.categorie === cb)
+    const FilterProjects = dataSauv?.filter((row)=> row.categorie === cb)
     setData(FilterProjects)
 
     }
-    
+    const init = ()=> {
+      setData(dataSauv)
+    }
     
 
   
@@ -63,7 +69,7 @@ const  Portfolio = () => {
         <button className='btn btn-success' onClick={() => handleFilter("Html/Css")}>Html/Css</button>
         <button className='btn btn-danger' onClick={() => handleFilter("JavaScript")}>JavaScript</button>
         <button className='btn btn-warning' onClick={() => handleFilter("React et JavaScript ")}>JavaScript & React</button>
-      
+        <button className= 'text-secondary' onClick={() => init ()}>Init</button>
         
       
 

@@ -17,10 +17,12 @@ const  Blog = () => {
     //La variable data sera utilisée pour stocker les données des articles de blog, et activeFooter sera utilisée pour afficher ou masquer un pied de page dans la page du blog.
     const [language, setLanguage] = useState("en");
     const {t, i18n } = useTranslation();
+   
+
 
 
     
-useEffect(() => {
+   useEffect(() => {
     console.log("mon composant est monte")
     axios.get('https://sabik-5af023.appdrag.site/api/getallBlog', {
   params: {
@@ -51,42 +53,63 @@ useEffect(() => {
   const HandleFooter = () => {
     setActiveFooter(!activeFooter)
   }
+
+  const [valueInput, setValueInput] = useState("");
+  const [resultat,setResultat]= useState([])
+  const handleInputChange = (e)=> {
+    console.log ("fonction ouverte")
+    console.log (e.target.value)
+    const valueRecherche = e.target.value;
+    console.log("valueRecherche", valueRecherche)
+    setValueInput(valueRecherche)
+
+    const resultFilter = data.filter(row => row.tittle.toLocaleLowerCase().includes(valueRecherche))
+    console.log("resultFilter", resultFilter)
+    setResultat(resultFilter)
+
+
+
+  }
 //Cette fonction HandleFooter est utilisée pour inverser l'état activeFooter lorsque l'utilisateur clique sur un bouton.
 
   return (
     
-     <>
-     
-      <div className="container">
-      
-      
-     
-      <h1 className='titre'> Mon Blog </h1>
-      {
-        data?.map((row)=> (
-          <Link className='text-decoration-none text-dark' to ={`/article/${row.id}`}>
-         
-          <div key ={row.id}  className="bg-secondary shadow-lg rouned m-3 p-3" >
-           <h2>{ language === "fr" ?  row.tittle  : row.tittleEn} </h2>
-          <img src ={row.image} className="img-fluid" alt= ""/>
-          <p>{language === "fr" ?  row.description.slice(0, 100) : row.descriptionEn?.slice(0, 100)}...</p>
-
-          <p> {language === "fr" ? row.auteur : row.auteurEn } </p>
-          </div>
-          </Link>
+    
+      <>
+        <div className="container">
+          <h1 className='titre'>Mon Blog</h1>
+          <input type="text" value={valueInput} onChange={handleInputChange} />
           
-        )
-        ) }
-          <Link to="/">
-            <button className="btn btn-primary">retourner a la page initial</button>
-          </Link>
-    </div>
-    <div>Hello blog</div>
-        <button onClick={() => HandleFooter()} >active Footer</button>
+          {resultat.length > 0 ? (
+            <div>
+              <h6>Résultat de la recherche</h6>
+              <div>
+                {resultat.map(row => (
+                  <div key={row.tittle}>
+                    <Link className='text-decoration-none text-dark' to={`/article/${row.id}`}>
+                      <div className="bg-secondary shadow-lg rounded m-3 p-3">
+                        <h2>{language === 'fr' ? row.tittle : row.tittleEn}</h2>
+                        <img src={row.image} className="img-fluid" alt="" />
+                        <p>{language === 'fr' ? row.description.slice(0, 100) : row.descriptionEn?.slice(0, 100)}...</p>
+                        <p>{language === 'fr' ? row.auteur : row.auteurEn}</p>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              <Link to="/">
+                <button className="btn btn-primary">Retourner à la page initiale</button>
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      </>
+    )};
+    
 
 
-    </>
-  )}
+
+
   export default Blog
 
 //Le tableau d'articles de blog est stocké dans l'état "data" grâce au hook useState. Il est récupéré depuis une API à l'aide d'une requête HTTP GET effectuée dans le hook useEffect.La méthode map est utilisée pour parcourir le tableau d'articles et générer un lien vers chaque article avec le titre, une courte description, l'image et l'auteur. 
