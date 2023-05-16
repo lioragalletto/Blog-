@@ -51,7 +51,7 @@ function NavbarOffCanva() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <SearchBar/>
+                  
 
                   <Nav.Link as={Link} to="/">Portfolio</Nav.Link>
                   <Nav.Link as={Link} to="/Cv">Cv</Nav.Link>
