@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Formik,Field } from 'formik';
 import * as yup from 'yup';
-import { IconName } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
- import {FaEyeSlash} from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { IconName } from "react-icons/fa";
 
 
 

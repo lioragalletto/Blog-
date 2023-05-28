@@ -2,9 +2,14 @@
 
 import React , {useEffect,useState} from 'react'
 import axios from "axios"
-import { useTranslation } from 'react-i18next';
 import {Link} from "react-router-dom"
-
+import NavbarOffCanva from '../../components/NavbarBoot/NavbarOffCanva'
+import i18n from '../../i18n/config'
+import useDocumentTItle from '../../components/useCustoms/useDocumentTItle'
+import useFetch from '../../components/useCustoms/useFetch'
+import useWindowSize from '../../components/useCustoms/useResize'
+import { useDispatch, useSelector } from 'react-redux'
+import { setArticles , getArticles , setArticleSelected } from "../../redux/slices/blog.slice"
 
 
 
@@ -12,28 +17,32 @@ import {Link} from "react-router-dom"
 
 const  Blog = () => {
 
-    const [data, setData] = useState();
-    const [activeFooter, setActiveFooter] = useState(false);
-    //La variable data sera utilisée pour stocker les données des articles de blog, et activeFooter sera utilisée pour afficher ou masquer un pied de page dans la page du blog.
+
+    
+    
     const [language, setLanguage] = useState("en");
-    const {t, i18n } = useTranslation();
+    const [valueInput, setValueInput] = useState('');
+     const [resultat, setResultat] = useState([]);   
    
 
 
+  const dispatch = useDispatch()
 
+  const GETARTICLES = useSelector(getArticles)
+
+  useDocumentTItle("blog de ouf")
+  const size = useWindowSize()
+  console.log(size)
+
+
+  useEffect(() => {
+    console.log("language", language)
+  }, [language]);
+
+  const { data, loading, error } = useFetch("https://sabik-5af023.appdrag.site/api/getallBlog")
+  dispatch(setArticles(data))
     
-   useEffect(() => {
-    console.log("mon composant est monte")
-    axios.get('https://sabik-5af023.appdrag.site/api/getallBlog', {
-  params: {
-    "AD_PageNbr" : "1",
-    "AD_PageSize" : "500"
-  }
-}).then(function(response){
-  console.log(response.data);
-  setData(response.data.Table)
-});
-  },[]) 
+  
   //Cette partie du code utilise le hook useEffect de React pour effectuer
   useEffect(() => {
     const handleChangeLanguage = () => {
@@ -50,12 +59,9 @@ const  Blog = () => {
     };
     }, [i18n]);
 
-  const HandleFooter = () => {
-    setActiveFooter(!activeFooter)
-  }
+ 
 
-  const [valueInput, setValueInput] = useState("");
-  const [resultat,setResultat]= useState([])
+ 
   const handleInputChange = (e)=> {
     console.log ("fonction ouverte")
     console.log (e.target.value)
@@ -76,6 +82,7 @@ const  Blog = () => {
     
     
       <>
+      <NavbarOffCanva/>
         <div className="container">
           <h1 className='titre'>Mon Blog</h1>
           <input type="text" value={valueInput} onChange={handleInputChange} />
@@ -84,27 +91,42 @@ const  Blog = () => {
             <div>
               <h6>Résultat de la recherche</h6>
               <div>
-                {resultat.map(row => (
-                  <div key={row.tittle}>
+                {resultat.map(article=>(
+                  <div key={article.id}>
+                    titre de lárticle : {article.tittle}
+                    <Link to={`/article/${article.id}`}>
+                    <button className='btn btn-success'> Consukter cet article </button>
+                    </Link>
+                  </div>
+                ))}
+                </div>
+                </div>
+          ):(<div> aucun resultat a votre requette </div>)
+
+                }
+                {GETARTICLES?.map(row => (
+                  
                     <Link className='text-decoration-none text-dark' to={`/article/${row.id}`}>
-                      <div className="bg-secondary shadow-lg rounded m-3 p-3">
+                      <div onClick={()=> dispatch(setArticleSelected(row.id))} className="bg-secondary shadow-lg rounded m-3 p-3">
                         <h2>{language === 'fr' ? row.tittle : row.tittleEn}</h2>
                         <img src={row.image} className="img-fluid" alt="" />
                         <p>{language === 'fr' ? row.description.slice(0, 100) : row.descriptionEn?.slice(0, 100)}...</p>
                         <p>{language === 'fr' ? row.auteur : row.auteurEn}</p>
                       </div>
                     </Link>
-                  </div>
+                 
                 ))}
-              </div>
+                 {error && <p>{error}</p>}
+                 {loading && loading}
+              
               <Link to="/">
                 <button className="btn btn-primary">Retourner à la page initiale</button>
               </Link>
             </div>
-          ) : null}
-        </div>
-      </>
-    )};
+            </>
+          ) 
+      
+    };
     
 
 

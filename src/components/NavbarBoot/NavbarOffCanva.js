@@ -8,29 +8,27 @@ import { Link } from "react-router-dom"
 import DropI18N from "../Dropl18N/Dropl18N";
 import {useTranslation} from "react-i18next";
 import { useLocation, useParams } from 'react-router-dom'
-import SearchBar from "../../pages/SearchBar/SearchBar";
+
+import { useSelector } from "react-redux";
+import { getToken  } from "../../redux/slices/auth.slice"
 
 
 function NavbarOffCanva() {
-  const [isAuth, setIsAuth] = useState(false);
 
-  const { t } = useTranslation()
+
   let location = useLocation()
   console.log("location",location.pathname)
+  const GET_TOKEN = useSelector(getToken)
+
+  // const _getToken = useSelector((state) => state.auth.fetchAuth.token)
+  // console.log("getToken",_getToken)
+  
+  const { t } = useTranslation()
   
 
 
 
-  useEffect(() => {
-    console.log("location",location)
-    if (localStorage.getItem("tokenBlog")) {
-      console.log("localStorage plein je suis auth")
-      setIsAuth(true)
-    }else{
-      console.log("je ne suis pas auth")
-      setIsAuth(false)
-    }
-  }, []);
+  
 
   return (
     <>
@@ -62,22 +60,14 @@ function NavbarOffCanva() {
 
 
                   {
-                    isAuth === true  &&
+                    GET_TOKEN &&
                     <>
-                      <Nav.Link as={Link} to="/addarticle">Add Article</Nav.Link>
-                      <>
-                    
-                    <Nav.Link  onClick={() => {
-                        localStorage.setItem("tokenBlog", "")
-                        window.location.reload()
-                      }} >logout</Nav.Link>
-                  
-                     
-   {/* UseState */}
-<NavDropdown  active title="UseState" id={`offcanvasNavbarDropdown-expand-${expand}`}  >
-  <NavDropdown.Item as={Link} to='/PresUseState'>Presentation du hooks</NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/usfObject">
-    UseState Object
+                                      
+          {/* UseState */}
+          <NavDropdown active={location.pathname === "/PresUseState" ? "fw-bold" : location.pathname === "/usfObject" ? "fw-bold" : ""  } title="UseState" id={`offcanvasNavbarDropdown-expand-${expand}`}  >
+          <NavDropdown.Item as={Link} to='/PresUseState'>Presentation du hooks</NavDropdown.Item>
+         <NavDropdown.Item as={Link} to="/usfObject">
+         UseState Object
   </NavDropdown.Item>
   {/* <NavDropdown.Divider /> */}
   <NavDropdown.Item as={Link} to="/UseStateToogle"> UseState Boolean (toogle) </NavDropdown.Item>
@@ -180,23 +170,18 @@ function NavbarOffCanva() {
   <NavDropdown.Item as={Link} to="/FormikExemple">FormikExemple</NavDropdown.Item>
 </NavDropdown>
 
-<DropI18N/>
+<Nav.Link as={Link} onClick={() => {
+                        localStorage.setItem("tokenBlog", "")
+                        window.location.reload()
+                      }} >logout</Nav.Link>
 
                     </>
-                    </>
-                  } 
-                 
+                    }
+                 <DropI18N/>
+
                 
                 </Nav>
-                 {/* <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form> */}
+                 
               
               </Offcanvas.Body>
             </Navbar.Offcanvas>
@@ -206,6 +191,6 @@ function NavbarOffCanva() {
 
     </>
   );
-              }
+  }
 
 export default NavbarOffCanva;

@@ -1,40 +1,35 @@
-
-import React,{useState} from 'react'
-
-
-import "./Metier.css"
+import React, {useState} from 'react'
 
 const Metier = () => {
+    const [state, setState] = useState({
+        id: 1, 
+        metier : "Fullstack Dev", 
+        Niveau : "en formation"
+    });
 
-  const [state, setState] = useState({
-    id: 1, 
-    metier : "Fullstack Dev", 
-    Niveau : "en formation"
-});
+   
+    const handleJunior = () => {
+     //   setState((prevstate)=>  ({...prevstate, Niveau: "Junior" }))
+        setState((prevstate)=>  (
+                {...prevstate, Niveau: "Junior" }
+             ))
+    }
+    const handleIntermediaire = () => {
+        setState((prevstate)=> ({...prevstate, Niveau: "Intermediaire" }))
+    }
+    const handleSenior = () => {
+        setState((prevstate)=> ({...prevstate, Niveau: "Senior" }))
+    }
 
-   const handleJunior = () => {
-    setState((prevState) => ({ ...prevState, niveau: "Junior" }));
-  }
-
-   const handleIntermediaire = () => {
-   setState((prevState) => ({ ...prevState, niveau: "Intermediaire" }));
-  }
-
-   const handleSenior = () => {
-   setState((prevState) => ({ ...prevState, niveau: "Senior" }));
-  }
-
-  return ( 
-     
-          <div>
-            <h1>Je suis {state.metier} {""} {state.Niveau}</h1>
-            <button className='junior' onClick={() => handleJunior() }>Dans trois mois je serai Junior</button>
-            <button className='intermediaire' onClick={ () => handleIntermediaire() }>Dans un an je serai Intermediaire</button>
-            <button className='senior' onClick={() => handleSenior() }>Dans 5 ans je serai Senior</button>
-          </div>
+  return (
+    <div>
+        <h1>je suis  {state.metier}   {" "}  {state.Niveau}  </h1>
+        <button  onClick={() => handleJunior() }  >dans trois mois je serais </button>
+        <button  onClick={() => handleIntermediaire() }>dans un an je serais</button>
+        <button  onClick={() => handleSenior() }>Dans 5 ans je serais </button>
       
-    );
-  }
+    </div>
+  );
+}
 
-
-export default Metier;
+export default Metier

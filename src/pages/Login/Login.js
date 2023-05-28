@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { useNavigate  } from "react-router-dom"
+import { useNavigate  } from "react-router-dom";
+import { setAuth } from "../../redux/slices/auth.slice";
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,6 +33,8 @@ const Login = () => {
                 setErrorAuth(false)
                 console.log("auth reussi")
                 localStorage.setItem("tokenBlog",response.data.Table[0].token )
+                dispatch(setAuth(response.data.Table[0]))
+                console.log(response.data.Table[0])
                 navigate("/")
             }
         });

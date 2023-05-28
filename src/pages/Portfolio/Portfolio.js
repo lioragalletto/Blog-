@@ -3,6 +3,9 @@ import React , {useEffect,useState} from 'react'
 import axios from "axios"
 
 import {useTranslation} from "react-i18next"
+import { useSelector } from 'react-redux'
+import { getPseudo  } from "../../redux/slices/auth.slice"
+import useDocumentTItle from '../../components/useCustoms/useDocumentTItle'
 
  
 
@@ -20,12 +23,15 @@ const  Portfolio = () => {
     
     
     const {t} = useTranslation()
+    const GETPSEUDO = useSelector(getPseudo)
+    useDocumentTItle("portolio de elie sultan")
+  useEffect(() => {
+    fetchApi()
+  }, []);
 
-    useEffect(() => {
-        console.log("mon composant est monte")
-        
-    
-        axios.get('https://sabik-5af023.appdrag.site/api/getAllProjects', {
+
+  const fetchApi = ()   => {
+       axios.get('https://sabik-5af023.appdrag.site/api/getAllProjects', {
            params: {
         "AD_PageNbr" : "1",
         "AD_PageSize" : "500"
@@ -37,7 +43,7 @@ const  Portfolio = () => {
           SetDataSauv(response.data.Table)
           
         });
-      },[]) // il manquait ca
+      } // il manquait ca
 
 
     const handleFilter =  (cb) => {
@@ -63,6 +69,7 @@ const  Portfolio = () => {
 
      
       <h1> {t("Portfolio.tittle")} </h1> 
+      <h1>Bonjour {GETPSEUDO}</h1>
 
      
        
