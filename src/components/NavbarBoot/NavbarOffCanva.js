@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import DropI18N from "../Dropl18N/Dropl18N";
 import {useTranslation} from "react-i18next";
 import { useLocation, useParams } from 'react-router-dom'
+import liora from "./../../../src/assets/img/liora.png"
 
 import { useSelector } from "react-redux";
 import { getToken  } from "../../redux/slices/auth.slice"
@@ -33,9 +34,14 @@ function NavbarOffCanva() {
   return (
     <>
       {["sm"].map((expand) => (
-        <Navbar key={expand} bg="warning" expand={expand} className="mb-3">
+        <Navbar key={expand} bg="secondary" expand={expand} className="mb-3">
           <Container >
-            <Navbar.Brand href="/">Cours React js</Navbar.Brand>
+            <Navbar.Brand href="/">
+           
+           <h4>Liora Galletto </h4>
+          
+          
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -51,7 +57,7 @@ function NavbarOffCanva() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   
 
-                  <Nav.Link as={Link} to="/">Portfolio</Nav.Link>
+                  <Nav.Link as={Link} to="/Portfolio">Portfolio</Nav.Link>
                   <Nav.Link as={Link} to="/Cv">Cv</Nav.Link>
                   <Nav.Link as={Link} to="/blog"> <span className={` ${location.pathname === "/blog"? "fw-bold ": ""}`}> Blog</span></Nav.Link>
 
