@@ -1,8 +1,8 @@
 
-import React ,{useState,useEffect}from 'react'
+import React, { useState ,useEffect} from 'react';
 
 
-const Count = () => {
+const Counter = () => {
 
   const [counter, setCounter] = useState(5);
 
@@ -30,5 +30,4 @@ const Count = () => {
   )
 }
 
-export default Count;
-
+export default Counter

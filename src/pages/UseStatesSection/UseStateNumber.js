@@ -1,6 +1,7 @@
 import React from 'react'
 import NavbarOffCanva from '../../components/NavbarBoot/NavbarOffCanva'
-import Count from "../../components/Compteur/Compteur"
+
+import Counter from '../../components/Compteur/Compteur'
 
 
 const UseStateNumber = () => {
@@ -41,7 +42,7 @@ const UseStateNumber = () => {
                 <div className="bg-dark text-light p-5 rounded-4">
                     <pre>{code}</pre>
                 </div>
-                <Count />
+                <Counter/>
             </div>
         </>
     )
